@@ -1,71 +1,63 @@
 # Casa Clara · Documentación del proyecto
 
-## 1. Resumen
+## Propósito
 
-Casa Clara es una app web de finanzas familiares para Eli y Wil. Permite revisar saldos, registrar ingresos y gastos, identificar pagos importantes y consultar un informe individual o combinado del hogar.
+Casa Clara es una app web para que Eli y Wil registren movimientos, consulten saldos, revisen gastos y no dejen pasar pagos importantes. Incluye una vista individual protegida y una vista familiar conjunta.
+
+## Repositorio y publicación
 
 - Repositorio: https://github.com/wtellezf-netizen/Finance
-- Rama principal: main
+- Rama principal: `main`
 - Sitio publicado: https://wtellezf-netizen.github.io/Finance/
-- Moneda de la demo: USD
+- Publicación: GitHub Actions mediante `.github/workflows/deploy-pages.yml`
 
-## 2. Funcionalidades implementadas
+## Estado de la conexión
 
-- Selector de perfil para Eli, Wil y Vista familiar.
-- Saldos disponibles, ingresos y gastos del mes.
-- Gráfico de ingresos frente a gastos.
-- Últimos movimientos con categoría, cuenta y monto.
-- Filtros y búsqueda de movimientos.
-- Registro de nuevos movimientos.
-- Calendario de pagos importantes con estado pendiente o pagado.
-- Informe familiar: saldo combinado, ingresos, gastos, ahorro y aporte de cada persona.
-- Objetivo de ahorro familiar.
-- Diseño adaptable para escritorio y móvil.
+El proyecto Supabase `casa-clara` ya fue creado en la organización Casa Clara, en East US (Ohio), plan Free. El archivo `supabase/schema.sql` fue ejecutado correctamente en el SQL Editor y creó las tablas, funciones y políticas de seguridad.
 
-## 3. Estado actual de los datos
+La app carga Supabase mediante:
 
-La versión publicada funciona en modo demo local: los movimientos nuevos se guardan en localStorage del navegador. Esto permite validar la experiencia sin poner datos financieros reales en el repositorio.
+- `supabase-config.js`: URL del proyecto y clave pública para el navegador.
+- `supabase-client.js`: inicio/cierre de sesión, lectura de datos y alta de movimientos.
+- `app.js`: interfaz, filtros, saldos, pagos y consolidado familiar.
 
-El selector Eli/Wil de la demo es visual y no reemplaza un inicio de sesión real. Para producción se debe activar Supabase y aplicar las políticas RLS descritas en la siguiente sección.
+No se incluye ninguna clave secreta en el repositorio. La clave pública está diseñada para usarse en el frontend y las políticas RLS limitan los datos que puede leer o modificar cada sesión.
 
-## 4. Conexión y permisos con Supabase
+## Estructura de datos
 
-El archivo supabase/schema.sql crea estas entidades:
+- `households`: hogar familiar.
+- `household_members`: relación entre usuarios, hogar y nombre visible (`Eli` o `Wil`).
+- `accounts`: cuentas personales o compartidas, con saldo inicial.
+- `transactions`: ingresos y gastos por cuenta.
+- `recurring_payments`: pagos importantes con día de vencimiento y estado.
 
-- households: hogar compartido.
-- household_members: miembros Eli y Wil con rol.
-- accounts: cuentas personales o compartidas.
-- transactions: ingresos y gastos.
-- recurring_payments: pagos importantes.
+## Permisos
 
-Las políticas RLS permiten que cada usuario vea las cuentas de su hogar, consulte la cuenta compartida y registre movimientos con su propia identidad. Las cuentas personales y los cambios de cada movimiento quedan asociados al usuario autenticado.
+Las políticas RLS permiten que un miembro vea los datos de su hogar. Cada persona puede añadir movimientos con su propia sesión. Las cuentas personales se muestran al propietario y las cuentas compartidas al hogar. El informe familiar reúne únicamente los registros autorizados por Supabase.
 
-### Activación
+## Activación de Eli y Wil
 
-1. Crear un proyecto en Supabase.
-2. Ejecutar supabase/schema.sql desde el SQL Editor.
-3. Crear a Eli y Wil en Authentication > Users.
-4. Crear un hogar y añadir ambos usuarios en household_members.
-5. Crear las cuentas personales y compartida en accounts.
-6. Configurar SUPABASE_URL y SUPABASE_ANON_KEY en el frontend.
-7. Sustituir el adaptador local por lecturas y escrituras autenticadas a Supabase.
+1. En Supabase, abre Authentication → Users y crea los dos usuarios con sus correos. No compartas contraseñas en el repositorio.
+2. Copia los UUID de ambos usuarios.
+3. En el SQL Editor, crea un hogar y asocia los dos usuarios con sus nombres visibles:
 
-Nunca subir una service role key ni contraseñas al repositorio. Solo la clave pública anon puede vivir en el frontend.
+```sql
+with new_home as (
+  insert into public.households (name) values ('Casa Clara') returning id
+)
+insert into public.household_members (household_id, user_id, display_name, role)
+select new_home.id, 'UUID_DE_ELI', 'Eli', 'owner' from new_home
+union all
+select new_home.id, 'UUID_DE_WIL', 'Wil', 'member' from new_home;
+```
 
-## 5. Despliegue
+4. Crea las cuentas personales y compartida asociadas al mismo `household_id`.
+5. Cada usuario entra en la app con su correo y contraseña. El botón “Vista familiar” consolida el hogar.
 
-El workflow .github/workflows/deploy-pages.yml publica automáticamente el contenido estático en GitHub Pages cuando hay cambios en main o master. La primera ejecución fue verificada como exitosa y Pages está configurado con fuente GitHub Actions.
+## Demo local
 
-## 6. Historial publicado
+El botón “Ver la demo local” usa datos de ejemplo y `localStorage`. Sirve para revisar la experiencia sin afectar Supabase. Los registros de la demo no se mezclan con los datos reales.
 
-- Lanzamiento inicial de Casa Clara: interfaz y demo funcional.
-- Añade esquema Supabase y permisos RLS: estructura de datos y acceso.
-- Configura publicación automática en GitHub Pages: workflow de despliegue.
+## Próximo paso recomendado
 
-## 7. Próximos pasos recomendados
-
-- Conectar Supabase y habilitar login por correo para Eli y Wil.
-- Añadir edición y eliminación controlada de movimientos.
-- Configurar recordatorios de pagos por correo o notificación.
-- Cambiar la moneda desde Configuración.
-- Añadir exportación CSV/PDF del informe familiar.
+Recibir los dos correos que se usarán para Eli y Wil, crear esas identidades en Supabase y completar el alta inicial de hogar y cuentas. No es necesario recibir contraseñas.

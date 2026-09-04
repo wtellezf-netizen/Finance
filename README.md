@@ -4,17 +4,18 @@ App web de finanzas familiares para Eli y Wil. Incluye vista individual y famili
 
 ## Ejecutar
 
-Abre `index.html` en un navegador. Los movimientos nuevos se guardan en el almacenamiento local del navegador.
+Abre `index.html` en un navegador o visita la publicación de GitHub Pages. La app muestra un acceso real conectado a Supabase y conserva una opción de demo local para revisar la interfaz sin una cuenta.
 
 El workflow de GitHub Pages en `.github/workflows/deploy-pages.yml` publica automáticamente el sitio después de cada push a `main` o `master`.
 
 ## Conexión real y permisos
 
-La carpeta `supabase/schema.sql` contiene el esquema de producción con usuarios, cuentas personales/compartidas y políticas RLS. Para activar la conexión real:
+La carpeta `supabase/schema.sql` contiene el esquema con usuarios, cuentas personales/compartidas y políticas RLS. El proyecto Casa Clara ya está creado en Supabase y `supabase-config.js` contiene únicamente la URL y la clave pública del navegador; nunca se publica una clave secreta.
 
-1. Crea un proyecto Supabase y ejecuta el archivo SQL.
-2. Crea los usuarios Eli y Wil en Authentication.
-3. Añade ambos usuarios a la misma fila de `households` mediante `household_members`.
-4. Configura las variables `SUPABASE_URL` y `SUPABASE_ANON_KEY` en el frontend.
+- Cada usuario consulta sus cuentas personales y las cuentas compartidas de su hogar.
+- Los movimientos nuevos se guardan en `transactions` con el usuario que los creó.
+- Los pagos importantes se guardan en `recurring_payments`.
+- La vista familiar consolida los datos permitidos por las políticas RLS.
+- Para activar a Eli y Wil, crea ambos usuarios en Authentication y añádelos a la misma fila de `households` usando `household_members` y sus UUID.
 
-La versión actual funciona como demo local para validar la experiencia antes de conectar credenciales y despliegue.
+Consulta `DOCUMENTACION.md` para el procedimiento completo y el estado actual del proyecto.
