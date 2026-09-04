@@ -66,4 +66,4 @@ El botón “Ver la demo local” usa datos de ejemplo y `localStorage`. Sirve p
 
 ## Próximo paso recomendado
 
-Eli debe aceptar la invitación más reciente desde `eliana.luengas@gmail.com` y entrar en el sitio publicado. Después, ambos pueden registrar sus saldos iniciales reales y sus primeros movimientos. No es necesario compartir contraseñas.
+Eli debe aceptar la invitación más reciente enviada a su correo corregido y entrar en el sitio publicado. Después, ambos pueden registrar sus saldos iniciales reales y sus primeros movimientos. No es necesario compartir contraseñas.
