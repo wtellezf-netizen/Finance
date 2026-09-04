@@ -15,7 +15,9 @@ Casa Clara es una app web para que Eli y Wil registren movimientos, consulten sa
 
 El proyecto Supabase `casa-clara` ya fue creado en la organización Casa Clara, en East US (Ohio), plan Free. El archivo `supabase/schema.sql` fue ejecutado correctamente en el SQL Editor y creó las tablas, funciones y políticas de seguridad.
 
-La configuración inicial también quedó realizada: hay un hogar Casa Clara, dos miembros con los nombres Eli y Wil, y tres cuentas (una personal para cada miembro y una compartida). Las invitaciones de acceso fueron enviadas a los correos proporcionados. Cada persona debe aceptar su invitación y definir su contraseña desde el correo recibido.
+La configuración inicial también quedó realizada: hay un hogar Casa Clara, dos miembros con los nombres Eli y Wil, y tres cuentas (una personal para cada miembro y una compartida). La invitación vigente de Eli fue enviada al correo corregido y Wil ya tiene su cuenta activa. El usuario anterior creado con el correo equivocado no fue eliminado para conservar trazabilidad, pero fue retirado del hogar y ya no es propietario de ninguna cuenta financiera.
+
+En Supabase Auth → URL Configuration, `Site URL` y el redirect permitido apuntan a `https://wtellezf-netizen.github.io/Finance/`. Por eso las invitaciones deben abrirse desde el enlace más reciente; un enlace antiguo que apunte a `localhost:3000` ya no es válido para un teléfono.
 
 La app carga Supabase mediante:
 
@@ -39,7 +41,7 @@ Las políticas RLS permiten que un miembro vea los datos autorizados de su hogar
 
 ## Activación de Eli y Wil
 
-La asociación de usuarios ya está hecha. Si se necesita repetirla en otro proyecto, el procedimiento es:
+La asociación de usuarios ya está hecha en el proyecto actual. Para completar el acceso, Eli debe abrir la invitación más reciente y Wil puede entrar con su cuenta activa desde el sitio publicado. Si se necesita repetir la configuración en otro proyecto, el procedimiento es:
 
 1. En Supabase, abre Authentication → Users y crea los dos usuarios con sus correos. No compartas contraseñas en el repositorio.
 2. Copia los UUID de ambos usuarios.
@@ -64,4 +66,4 @@ El botón “Ver la demo local” usa datos de ejemplo y `localStorage`. Sirve p
 
 ## Próximo paso recomendado
 
-Aceptar las dos invitaciones enviadas, definir las contraseñas directamente en Supabase y registrar los saldos iniciales reales. No es necesario compartir contraseñas.
+Eli debe aceptar la invitación más reciente desde `eliana.luengas@gmail.com` y entrar en el sitio publicado. Después, ambos pueden registrar sus saldos iniciales reales y sus primeros movimientos. No es necesario compartir contraseñas.
