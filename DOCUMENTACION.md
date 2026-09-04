@@ -35,7 +35,7 @@ No se incluye ninguna clave secreta en el repositorio. La clave pública está d
 
 ## Permisos
 
-Las políticas RLS permiten que un miembro vea los datos de su hogar. Cada persona puede añadir movimientos con su propia sesión. Las cuentas personales se muestran al propietario y las cuentas compartidas al hogar. El informe familiar reúne únicamente los registros autorizados por Supabase.
+Las políticas RLS permiten que un miembro vea los datos autorizados de su hogar para construir el consolidado. La interfaz personal muestra la cuenta propia y las cuentas compartidas. Cada persona solo puede guardar movimientos y pagos en su cuenta o en la cuenta compartida; el informe familiar reúne los registros permitidos por Supabase.
 
 ## Activación de Eli y Wil
 
