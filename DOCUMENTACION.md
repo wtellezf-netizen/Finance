@@ -15,6 +15,8 @@ Casa Clara es una app web para que Eli y Wil registren movimientos, consulten sa
 
 El proyecto Supabase `casa-clara` ya fue creado en la organización Casa Clara, en East US (Ohio), plan Free. El archivo `supabase/schema.sql` fue ejecutado correctamente en el SQL Editor y creó las tablas, funciones y políticas de seguridad.
 
+La configuración inicial también quedó realizada: hay un hogar Casa Clara, dos miembros con los nombres Eli y Wil, y tres cuentas (una personal para cada miembro y una compartida). Las invitaciones de acceso fueron enviadas a los correos proporcionados. Cada persona debe aceptar su invitación y definir su contraseña desde el correo recibido.
+
 La app carga Supabase mediante:
 
 - `supabase-config.js`: URL del proyecto y clave pública para el navegador.
@@ -37,6 +39,8 @@ Las políticas RLS permiten que un miembro vea los datos de su hogar. Cada perso
 
 ## Activación de Eli y Wil
 
+La asociación de usuarios ya está hecha. Si se necesita repetirla en otro proyecto, el procedimiento es:
+
 1. En Supabase, abre Authentication → Users y crea los dos usuarios con sus correos. No compartas contraseñas en el repositorio.
 2. Copia los UUID de ambos usuarios.
 3. En el SQL Editor, crea un hogar y asocia los dos usuarios con sus nombres visibles:
@@ -52,7 +56,7 @@ select new_home.id, 'UUID_DE_WIL', 'Wil', 'member' from new_home;
 ```
 
 4. Crea las cuentas personales y compartida asociadas al mismo `household_id`.
-5. Cada usuario entra en la app con su correo y contraseña. El botón “Vista familiar” consolida el hogar.
+5. Cada usuario acepta la invitación, define su contraseña y entra en la app. El botón “Vista familiar” consolida el hogar.
 
 ## Demo local
 
@@ -60,4 +64,4 @@ El botón “Ver la demo local” usa datos de ejemplo y `localStorage`. Sirve p
 
 ## Próximo paso recomendado
 
-Recibir los dos correos que se usarán para Eli y Wil, crear esas identidades en Supabase y completar el alta inicial de hogar y cuentas. No es necesario recibir contraseñas.
+Aceptar las dos invitaciones enviadas, definir las contraseñas directamente en Supabase y registrar los saldos iniciales reales. No es necesario compartir contraseñas.
