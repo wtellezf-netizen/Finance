@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#173f35" />
+    <title>Casa Clara · Finanzas familiares</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navegación principal">
+        <div class="brand"><span class="brand-mark">✦</span><span>Casa Clara</span></div>
+        <div class="profile-switcher">
+          <span class="eyebrow">Viendo como</span>
+          <button id="profileButton" class="profile-button" type="button"><span id="profileAvatar" class="avatar">E</span><span><strong id="profileName">Eli</strong><small id="profileEmail">Cuenta personal</small></span><span class="chevron">⌄</span></button>
+          <div id="profileMenu" class="profile-menu hidden">
+            <button data-profile="eli" type="button"><span class="avatar avatar-eli">E</span><span><strong>Eli</strong><small>Cuenta personal</small></span></button>
+            <button data-profile="wil" type="button"><span class="avatar avatar-wil">W</span><span><strong>Wil</strong><small>Cuenta personal</small></span></button>
+            <button data-profile="family" type="button"><span class="avatar avatar-family">+</span><span><strong>Vista familiar</strong><small>Eli + Wil</small></span></button>
+          </div>
+        </div>
+        <nav class="main-nav">
+          <button class="nav-item active" data-view="overview" type="button"><span>⌂</span> Resumen</button>
+          <button class="nav-item" data-view="movements" type="button"><span>↕</span> Movimientos</button>
+          <button class="nav-item" data-view="payments" type="button"><span>◷</span> Pagos importantes <span id="navPaymentBadge" class="nav-badge">3</span></button>
+          <button class="nav-item" data-view="reports" type="button"><span>◒</span> Informe familiar</button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="tip-card"><span class="tip-icon">☀</span><strong>Un paso a la vez</strong><p>Revisar tus finanzas 5 minutos hoy hace más ligero el mañana.</p></div>
+          <button class="nav-item muted" type="button" id="settingsButton"><span>⚙</span> Configuración</button>
+          <div class="secure-note"><span>⌁</span> Datos guardados en este dispositivo</div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div><p class="eyebrow" id="todayLabel">Jueves, 4 de septiembre de 2026</p><h1 id="pageTitle">Buenos días, Eli <span class="wave">✺</span></h1></div>
+          <div class="top-actions"><button class="icon-button" id="helpButton" aria-label="Ayuda" type="button">?</button><button class="user-chip" id="topProfileButton" type="button"><span id="topAvatar" class="avatar avatar-eli">E</span><span id="topProfileLabel">Eli</span><span>⌄</span></button></div>
+        </header>
+
+        <section id="overviewView" class="view-panel">
+          <div class="welcome-row"><div><span class="pill pill-green">● Todo en orden</span><p class="section-kicker">Tu panorama financiero</p></div><button class="primary-button" id="addMovementButton" type="button"><span>＋</span> Añadir movimiento</button></div>
+          <div class="summary-grid">
+            <article class="balance-card"><div class="card-heading"><span>Saldo disponible</span><button class="more-button" type="button">•••</button></div><div class="balance-value" id="balanceValue">$8,426.50</div><div class="balance-meta"><span class="trend-up">↗ 8.4%</span><span>vs. mes anterior</span></div><div class="balance-spark"><span style="height:28%"></span><span style="height:38%"></span><span style="height:33%"></span><span style="height:52%"></span><span style="height:46%"></span><span style="height:64%"></span><span style="height:58%"></span><span style="height:78%"></span><span style="height:68%"></span><span style="height:88%"></span><span style="height:81%"></span><span style="height:95%"></span></div></article>
+            <article class="stat-card"><div class="card-heading"><span>Ingresos · Septiembre</span><span class="soft-icon income">↗</span></div><div class="stat-value" id="incomeValue">$5,850.00</div><div class="stat-caption"><span class="trend-up">+12.2%</span> que el mes pasado</div><div class="mini-progress"><span style="width:72%"></span></div><div class="stat-foot"><span>Meta mensual</span><strong>$8,100</strong></div></article>
+            <article class="stat-card"><div class="card-heading"><span>Gastos · Septiembre</span><span class="soft-icon expense">↘</span></div><div class="stat-value" id="expenseValue">$2,116.40</div><div class="stat-caption"><span class="trend-down">−4.6%</span> que el mes pasado</div><div class="mini-progress expense-progress"><span style="width:43%"></span></div><div class="stat-foot"><span>Presupuesto usado</span><strong>43%</strong></div></article>
+          </div>
+          <div class="content-grid">
+            <article class="panel chart-panel"><div class="panel-header"><div><p class="eyebrow">Ritmo del dinero</p><h2>Ingresos vs. gastos</h2></div><select id="chartPeriod" class="select-control"><option>Últimos 6 meses</option><option>Este año</option></select></div><div class="chart-legend"><span><i class="dot dot-green"></i>Ingresos</span><span><i class="dot dot-sand"></i>Gastos</span></div><div class="chart-wrap"><div class="y-labels"><span>$8k</span><span>$6k</span><span>$4k</span><span>$2k</span><span>$0</span></div><div class="chart"><div class="grid-line l1"></div><div class="grid-line l2"></div><div class="grid-line l3"></div><div class="grid-line l4"></div><svg viewBox="0 0 620 220" preserveAspectRatio="none" aria-label="Gráfico de ingresos y gastos"><path class="area-green" d="M0,160 C45,150 65,132 105,137 S165,106 208,118 S270,66 312,87 S372,55 415,79 S472,38 515,54 S570,22 620,35 V220 H0Z"></path><path class="line-green" d="M0,160 C45,150 65,132 105,137 S165,106 208,118 S270,66 312,87 S372,55 415,79 S472,38 515,54 S570,22 620,35"></path><path class="line-sand" d="M0,192 C48,184 65,174 105,180 S165,168 208,177 S270,142 312,158 S372,134 415,149 S472,118 515,130 S570,95 620,110"></path></svg><div class="x-labels"><span>Abr</span><span>May</span><span>Jun</span><span>Jul</span><span>Ago</span><span>Sep</span></div></div></div></article>
+            <article class="panel payments-panel"><div class="panel-header"><div><p class="eyebrow">Próximamente</p><h2>Pagos importantes</h2></div><button class="text-button" data-view-link="payments" type="button">Ver todos <span>→</span></button></div><div id="paymentPreview" class="payment-list"></div><button class="add-subtle-button" id="addPaymentButton" type="button">＋ Añadir pago recurrente</button></article>
+          </div>
+          <div class="content-grid bottom-grid"><article class="panel movements-panel"><div class="panel-header"><div><p class="eyebrow">Actividad reciente</p><h2>Últimos movimientos</h2></div><button class="text-button" data-view-link="movements" type="button">Ver todos <span>→</span></button></div><div id="movementPreview" class="movement-list"></div></article><article class="panel categories-panel"><div class="panel-header"><div><p class="eyebrow">Dónde se va</p><h2>Gastos por categoría</h2></div><button class="more-button" type="button">•••</button></div><div class="donut-row"><div class="donut-chart"><div class="donut-hole"><strong>100%</strong><small>Total</small></div></div><div id="categoryList" class="category-list"></div></div></article></div>
+        </section>
+
+        <section id="movementsView" class="view-panel hidden"><div class="page-intro"><div><span class="pill pill-lilac">Movimientos</span><h2>Todo lo que entra y sale</h2><p>Consulta y organiza tus movimientos por cuenta, categoría o fecha.</p></div><button class="primary-button" id="addMovementButton2" type="button">＋ Añadir movimiento</button></div><div class="toolbar"><div class="search-box"><span>⌕</span><input id="movementSearch" placeholder="Buscar movimiento" /></div><select id="movementTypeFilter" class="select-control"><option value="all">Todos los tipos</option><option value="income">Ingresos</option><option value="expense">Gastos</option></select><select id="movementCategoryFilter" class="select-control"><option value="all">Todas las categorías</option><option>Vivienda</option><option>Comida</option><option>Transporte</option><option>Salud</option><option>Ocio</option><option>Trabajo</option></select></div><article class="panel table-panel"><div class="table-header"><span>Movimiento</span><span>Categoría</span><span>Fecha</span><span>Cuenta</span><span class="align-right">Monto</span></div><div id="movementTable"></div></article></section>
+
+        <section id="paymentsView" class="view-panel hidden"><div class="page-intro"><div><span class="pill pill-peach">Calendario financiero</span><h2>Pagos importantes</h2><p>Que ningún pago se te pase. Aquí tienes tus próximos compromisos.</p></div><button class="primary-button" id="addPaymentButton2" type="button">＋ Añadir pago</button></div><div class="payment-summary"><div><span class="eyebrow">A pagar este mes</span><strong id="dueTotal">$1,435.00</strong></div><div><span class="eyebrow">Pagos pendientes</span><strong id="pendingCount">3</strong></div><div><span class="eyebrow">Próximo vencimiento</span><strong id="nextDue">En 2 días</strong></div></div><div id="fullPaymentList" class="full-payment-list"></div></section>
+
+        <section id="reportsView" class="view-panel hidden"><div class="page-intro"><div><span class="pill pill-blue">Eli + Wil</span><h2>Informe familiar</h2><p>Una mirada conjunta para tomar decisiones con calma y claridad.</p></div><select class="select-control"><option>Septiembre 2026</option><option>Agosto 2026</option></select></div><div class="family-hero"><div><span class="eyebrow">Saldo familiar disponible</span><strong>$13,718.20</strong><p><span class="trend-up">↗ 6.8%</span> creciendo frente al mes anterior</p></div><div class="family-avatars"><span class="avatar avatar-eli">E</span><span class="avatar avatar-wil">W</span><span>Cuenta compartida</span></div></div><div class="summary-grid family-stats"><article class="stat-card"><div class="card-heading"><span>Ingresos combinados</span><span class="soft-icon income">↗</span></div><div class="stat-value">$9,950.00</div><div class="stat-caption"><span class="trend-up">+8.1%</span> frente a agosto</div></article><article class="stat-card"><div class="card-heading"><span>Gastos combinados</span><span class="soft-icon expense">↘</span></div><div class="stat-value">$3,842.60</div><div class="stat-caption"><span class="trend-down">−2.3%</span> frente a agosto</div></article><article class="stat-card"><div class="card-heading"><span>Ahorro del mes</span><span class="soft-icon savings">✦</span></div><div class="stat-value">$6,107.40</div><div class="stat-caption">61.4% de los ingresos</div></article></div><div class="content-grid"><article class="panel split-panel"><div class="panel-header"><div><p class="eyebrow">Aporte al hogar</p><h2>Ingresos por persona</h2></div></div><div class="person-row"><div class="person-label"><span class="avatar avatar-eli">E</span><span><strong>Eli</strong><small>$5,850.00</small></span></div><div class="bar-track"><span class="bar-eli" style="width:59%"></span></div><strong>59%</strong></div><div class="person-row"><div class="person-label"><span class="avatar avatar-wil">W</span><span><strong>Wil</strong><small>$4,100.00</small></span></div><div class="bar-track"><span class="bar-wil" style="width:41%"></span></div><strong>41%</strong></div><div class="insight"><span>✧</span><p><strong>Buen balance.</strong> Sus aportes están alineados con el plan familiar de este mes.</p></div></article><article class="panel goals-panel"><div class="panel-header"><div><p class="eyebrow">Objetivos compartidos</p><h2>Ahorro familiar</h2></div><button class="text-button" type="button">Gestionar <span>→</span></button></div><div class="goal-name"><span class="goal-icon">⌂</span><span><strong>Fondo para casa</strong><small>Meta: $25,000</small></span><strong>$15,750</strong></div><div class="goal-track"><span></span></div><div class="goal-footer"><span>63% completado</span><span>Faltan $9,250</span></div><button class="add-subtle-button" type="button">＋ Nuevo objetivo</button></article></div></section>
+      </main>
+    </div>
+
+    <div id="movementModal" class="modal-backdrop hidden"><div class="modal-card"><div class="modal-header"><div><span class="eyebrow">Nuevo registro</span><h2>Añadir movimiento</h2></div><button class="close-button" data-close-modal="movementModal" type="button">×</button></div><form id="movementForm"><div class="form-row toggle-row"><label class="type-option selected"><input name="type" type="radio" value="expense" checked /> Gasto</label><label class="type-option"><input name="type" type="radio" value="income" /> Ingreso</label></div><label>Descripción<input name="description" required placeholder="Ej. Compra del supermercado" /></label><div class="form-row"><label>Monto<input name="amount" type="number" min="0.01" step="0.01" required placeholder="0.00" /></label><label>Categoría<select name="category"><option>Comida</option><option>Vivienda</option><option>Transporte</option><option>Salud</option><option>Ocio</option><option>Trabajo</option></select></label></div><div class="form-row"><label>Fecha<input name="date" type="date" required /></label><label>Cuenta<select name="account"><option>Cuenta de Eli</option><option>Cuenta de Wil</option><option>Cuenta compartida</option></select></label></div><button class="primary-button full-button" type="submit">Guardar movimiento</button></form></div></div>
+    <div id="toast" class="toast hidden"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
