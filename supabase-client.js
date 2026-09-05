@@ -38,7 +38,7 @@
         client.from('household_members').select('household_id,user_id,display_name,role'),
         client.from('accounts').select('id,household_id,owner_id,name,kind,opening_balance'),
         client.from('transactions').select('id,account_id,created_by,description,category,amount,type,occurred_on').order('occurred_on', { ascending: false }),
-        client.from('recurring_payments').select('id,account_id,name,amount,due_day,status').order('due_day', { ascending: true })
+        client.from('recurring_payments').select('id,account_id,created_by,name,amount,due_day,status').order('due_day', { ascending: true })
       ]);
       const problem = [members, accounts, transactions, recurringPayments].find((result) => result.error);
       if (problem) return { data: null, error: problem.error };
@@ -50,6 +50,14 @@
     async addTransaction(payload) {
       if (!client) return fail(new Error('Supabase no está configurado.'));
       return client.from('transactions').insert(payload).select('id,account_id,created_by,description,category,amount,type,occurred_on').single();
+    },
+    async addRecurringPayment(payload) {
+      if (!client) return fail(new Error('Supabase no está configurado.'));
+      return client.from('recurring_payments').insert(payload).select('id,account_id,created_by,name,amount,due_day,status').single();
+    },
+    async updateRecurringPayment(id, payload) {
+      if (!client) return fail(new Error('Supabase no está configurado.'));
+      return client.from('recurring_payments').update(payload).eq('id', id).select('id,account_id,created_by,name,amount,due_day,status').single();
     }
   };
 })();

@@ -35,6 +35,8 @@ No se incluye ninguna clave secreta en el repositorio. La clave pública está d
 - `transactions`: ingresos y gastos por cuenta.
 - `recurring_payments`: pagos importantes con día de vencimiento y estado.
 
+La pantalla “Pagos importantes” carga los registros autorizados desde Supabase. El botón “Añadir pago” permite indicar nombre, monto, día, estado y cuenta personal o compartida; el estado se puede cambiar desde la lista cuando el usuario tiene permiso de edición. En modo demo, los pagos se guardan únicamente en el navegador.
+
 ## Permisos
 
 Las políticas RLS permiten que un miembro vea los datos autorizados de su hogar para construir el consolidado. La interfaz personal muestra la cuenta propia y las cuentas compartidas. Cada persona solo puede guardar movimientos y pagos en su cuenta o en la cuenta compartida; el informe familiar reúne los registros permitidos por Supabase.
