@@ -41,7 +41,7 @@ Las políticas RLS permiten que un miembro vea los datos autorizados de su hogar
 
 ## Activación de Eli y Wil
 
-La asociación de usuarios ya está hecha en el proyecto actual. Para completar el acceso, Eli debe abrir la invitación más reciente y Wil puede entrar con su cuenta activa desde el sitio publicado. Si se necesita repetir la configuración en otro proyecto, el procedimiento es:
+La asociación de usuarios ya está hecha en el proyecto actual. Para completar el acceso, Eli debe abrir la invitación más reciente y Wil puede entrar con su cuenta activa desde el sitio publicado. Al abrir una invitación válida, la app presenta el formulario “Nueva contraseña”; no hace falta conocer una contraseña anterior. Si el enlace ya expiró o no abrió la sesión, se puede escribir el correo en la pantalla de acceso y pulsar “No tengo contraseña / recuperar acceso” para recibir un enlace nuevo. Si se necesita repetir la configuración en otro proyecto, el procedimiento es:
 
 1. En Supabase, abre Authentication → Users y crea los dos usuarios con sus correos. No compartas contraseñas en el repositorio.
 2. Copia los UUID de ambos usuarios.
@@ -58,7 +58,7 @@ select new_home.id, 'UUID_DE_WIL', 'Wil', 'member' from new_home;
 ```
 
 4. Crea las cuentas personales y compartida asociadas al mismo `household_id`.
-5. Cada usuario acepta la invitación, define su contraseña y entra en la app. El botón “Vista familiar” consolida el hogar.
+5. Cada usuario acepta la invitación, crea su contraseña desde la app y entra. El botón “Vista familiar” consolida el hogar.
 
 ## Demo local
 
