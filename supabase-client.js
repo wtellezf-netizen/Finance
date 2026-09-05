@@ -20,6 +20,14 @@
       if (!client) return fail(new Error('Supabase no está configurado.'));
       return client.auth.signInWithPassword({ email, password });
     },
+    async resetPassword(email, redirectTo) {
+      if (!client) return fail(new Error('Supabase no está configurado.'));
+      return client.auth.resetPasswordForEmail(email, { redirectTo });
+    },
+    async updatePassword(password) {
+      if (!client) return fail(new Error('Supabase no está configurado.'));
+      return client.auth.updateUser({ password });
+    },
     async signOut() {
       if (!client) return { error: null };
       return client.auth.signOut();

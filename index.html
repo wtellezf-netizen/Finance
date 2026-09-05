@@ -23,6 +23,13 @@
           <button class="primary-button full-button" type="submit">Entrar a Casa Clara</button>
           <p id="authMessage" class="auth-message" role="status"></p>
         </form>
+        <form id="passwordSetupForm" class="auth-form hidden">
+          <label>Nueva contraseña<input id="newPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="Mínimo 8 caracteres" /></label>
+          <label>Repite la contraseña<input id="confirmPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="Escríbela otra vez" /></label>
+          <button class="primary-button full-button" type="submit">Guardar contraseña y entrar</button>
+          <p id="passwordSetupMessage" class="auth-message" role="status"></p>
+        </form>
+        <button id="forgotPasswordButton" class="text-button auth-recovery" type="button">No tengo contraseña / recuperar acceso</button>
         <button id="demoButton" class="demo-button" type="button">Ver la demo local</button>
         <small class="auth-note">Los datos reales se guardan de forma segura en Supabase. La demo usa datos de ejemplo.</small>
       </div>
