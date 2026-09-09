@@ -1,4 +1,5 @@
 (() => {
+  const CASA_CLARA_REDIRECT_URL = 'https://wtellezf-netizen.github.io/Finance/';
   const config = window.CASA_CLARA_CONFIG || {};
   const configured = Boolean(window.supabase && config.supabaseUrl && config.supabaseAnonKey);
   const client = configured ? window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey) : null;
@@ -20,9 +21,9 @@
       if (!client) return fail(new Error('Supabase no está configurado.'));
       return client.auth.signInWithPassword({ email, password });
     },
-    async resetPassword(email, redirectTo) {
+    async resetPassword(email, redirectTo = CASA_CLARA_REDIRECT_URL) {
       if (!client) return fail(new Error('Supabase no está configurado.'));
-      return client.auth.resetPasswordForEmail(email, { redirectTo });
+      return client.auth.resetPasswordForEmail(email, { redirectTo: CASA_CLARA_REDIRECT_URL });
     },
     async updatePassword(password) {
       if (!client) return fail(new Error('Supabase no está configurado.'));
